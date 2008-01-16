@@ -5,7 +5,7 @@ use Yahoo::BBAuth;
 use LWP;
 use XML::Simple;
 
-our $VERSION = '0.1';
+our $VERSION = '0.1.1';
 
 sub new {
     my $self = shift;
@@ -183,11 +183,12 @@ sub _get {
 __END__
 
 =head1 NAME
+
 Yahoo::Lifestyle is a simple interface for Yahoo! Taiwan Lifestyle open APIs. And you will need the Yahoo::BBAuth for some authentication APIs. Before you use that, you have to register a appid and secret for APIs request.
 
 =head1 VERSION
 
-This document describes version 0.1 of Yahoo::Lifestyle, released 
+This document describes version 0.1.1 of Yahoo::Lifestyle, released 
 January 16, 2008.
 
 =head1 SYNOPSIS
