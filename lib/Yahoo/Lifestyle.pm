@@ -5,7 +5,7 @@ use Yahoo::BBAuth;
 use LWP;
 use XML::Simple;
 
-our $VERSION = '0.1.1';
+our $VERSION = '0.2';
 
 sub new {
     my $self = shift;
@@ -39,7 +39,8 @@ sub Bizsearch {
     my $param = shift;
     my $p = $param->{BizName};
     my $l = $param->{address};
-    my $request = $self->{request}."Biz.search?BizName=$p&address=$l";
+    my $page = $param->{page};
+    my $request = $self->{request}."Biz.search?BizName=$p&address=$l&page=$page";
     my $response = XMLin($self->_get($request));
     if ($response->{status} eq 'ok') {
 	return $response->{BizList};
@@ -188,7 +189,7 @@ Yahoo::Lifestyle is a simple interface for Yahoo! Taiwan Lifestyle open APIs. An
 
 =head1 VERSION
 
-This document describes version 0.1.1 of Yahoo::Lifestyle, released 
+This document describes version 0.1 of Yahoo::Lifestyle, released 
 January 16, 2008.
 
 =head1 SYNOPSIS
@@ -196,7 +197,8 @@ January 16, 2008.
 use Yahoo::Lifestyle;
 
 $life = Yahoo::Lifestyle({ appid => "Ea6oQPHIkY03GklWeauQHWPpPJByMjCDoxRxcW"});
-$res = $life->Bizsearch({BizName => 'coffee', address => '');
+$res = $life->Bizsearch({BizName => 'coffee', address => '', page => '3');
+$list = $life->BizlistReviews({id => 'b4328e0fa8b25615', begin => '0', limit => '10');
 print $res->{Biz}->{$_}->{Name} for (keys %{$res});
 $life->bbauth({secret => $secret});
 $bookmarks = $life->UserlistBookmarks;
